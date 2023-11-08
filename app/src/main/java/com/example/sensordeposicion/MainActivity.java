@@ -10,19 +10,16 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.os.ParcelUuid;
 import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     private EditText posicion;
-
     private SensorManager sm;
-
     private Sensor sa;
-
     private SensorEventListener SEL;
+    private int latigo = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                     if (x > 5 && latigo == 0) {
                         latigo++;
                         getWindow().getDecorView().setBackgroundColor(Color.BLUE);
-                    } else if (x > 5 && latigo == 1){
+                    } else if (x > 5 && latigo == 1) {
                         latigo++;
                         getWindow().getDecorView().setBackgroundColor(Color.RED);
                     }
@@ -54,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
                         latigo = 0;
                     }
                 }
+
                 @Override
                 public void onAccuracyChanged(Sensor sensor, int accuracy) {
                 }
@@ -61,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void sonido(){
+    private void sonido() {
         MediaPlayer mp = MediaPlayer.create(this, R.raw.latigo);
         mp.start();
     }
@@ -81,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStop(){
+    protected void onStop() {
         detener();
         super.onStop();
     }
